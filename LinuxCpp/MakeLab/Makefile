@@ -2,7 +2,7 @@
 
 CC=g++
 CFLAGS=-c -Wall
-LFLAGS=-lm 
+LFLAGS=-lm -pthread -std=c++11
 
 all: ParallRead
 
@@ -14,3 +14,15 @@ ParallRead.o: ParallRead.cpp
 
 clean:
 	rm *.o ParallRead
+
+# make for LabRead
+# all: LabRead
+# 
+# LabRead: LabRead.o
+# 	$(CC) $(LFLAGS) LabRead.o -o LabRead
+# 
+# LabRead.o: LabRead.cpp
+# 	$(CC) $(CFLAGS) LabRead.cpp -o LabRead.o
+# 
+# clean:
+# 	rm *.o LabRead
