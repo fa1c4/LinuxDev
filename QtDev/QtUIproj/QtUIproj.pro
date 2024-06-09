@@ -16,17 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    filereader.cpp \
     main.cpp \
     mainwindow.cpp \
     mlistwidget.cpp \
     qtexpl.cpp
 
 HEADERS += \
+    filereader.h \
     mainwindow.h \
     mlistwidget.h \
     qtexpl.h
 
 FORMS += \
+    filereader.ui \
     mainwindow.ui \
     mlistwidget.ui \
     qtexpl.ui
