@@ -82,3 +82,56 @@ void FileReader::on_pushButton_3_clicked()
         ui->plainTextEdit->appendPlainText("file formatt only supports pdf for now.");
     }
 }
+
+// read binary file and print as hex format
+void FileReader::on_pushButton_4_clicked()
+{
+    ui->plainTextEdit->clear();
+    QString fileName = ui->lineEdit->text();
+    QFile mFile(fileName);
+
+    char mBuffer[16];
+    char hexStr[49];
+    char hexTable[17] = "0123456789abcdef"; // hex characters first character is '\0'
+    // char hexTable[16] = "0123456789abcdef"; // hex characters
+
+    // if file exists then read file
+    if (mFile.exists()){
+        if (mFile.open(QIODevice::ReadOnly)) {
+            while (!mFile.atEnd()) {
+                // read binary file until the end
+                // init  buffers
+                // memset(mBuffer, '\0', sizeof(mBuffer) + 1);
+                // memset(hexStr, '\0', sizeof(hexStr) + 1); // off-by-one vuln
+                memset(mBuffer, '\0', sizeof(mBuffer));
+                memset(hexStr, '\0', sizeof(hexStr));
+
+                qint64 mPos = mFile.pos();
+                qint64 mByte = mFile.read(mBuffer, sizeof(mBuffer));
+                QString mLine = QString("%1").arg(mPos, 8, 16, QLatin1Char('0'));
+                mLine.append(": ");
+
+                // convert each byte to hex
+                for (int i = 0; i < mByte; ++i) {
+                    char mChar = mBuffer[i];
+                    int mInt = int(mChar);
+                    if (mInt < 0) mInt = 256 + int(mChar);
+                    hexStr[i * 3] = hexTable[int(mInt / 16)];
+                    hexStr[i * 3 + 1] = hexTable[mInt % 16];
+                    hexStr[i * 3 + 2] = ' ';
+                }
+                mLine.append(QString(hexStr));
+                ui->plainTextEdit->appendPlainText(mLine);
+            }
+            mFile.close();
+        } else {
+            ui->plainTextEdit->clear();
+            ui->plainTextEdit->appendPlainText(fileName);
+            ui->plainTextEdit->appendPlainText("open file error!");
+        }
+    } else {
+        ui->plainTextEdit->clear();
+        ui->plainTextEdit->appendPlainText(fileName);
+        ui->plainTextEdit->appendPlainText("file does not exists!");
+    }
+}
