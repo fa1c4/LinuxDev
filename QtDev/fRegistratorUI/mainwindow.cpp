@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->comboBox->addItem("Female");
+    ui->comboBox->addItem("Male");
+    ui->comboBox->addItem("Asexual");
+    ui->comboBox->addItem("Transfer");
 }
 
 MainWindow::~MainWindow()
@@ -18,30 +22,32 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     // get the text from lineEdit
-    QString mMsg = ui->lineEdit->text() + " ";
+    QString mMsg = ui->lineEdit->text() + " | ";
     if (ui->radioButton->isChecked()) {
-        mMsg.append(ui->radioButton->text() + " ");
+        mMsg.append(ui->radioButton->text() + " | ");
     }
 
     if (ui->radioButton_2->isChecked()) {
-        mMsg.append(ui->radioButton_2->text() + " ");
+        mMsg.append(ui->radioButton_2->text() + " | ");
     }
 
     if (ui->radioButton_3->isChecked()) {
-        mMsg.append(ui->radioButton_3->text() + " ");
+        mMsg.append(ui->radioButton_3->text() + " | ");
     }
 
     if (ui->checkBox->isChecked()) {
-        mMsg.append(ui->checkBox->text() + " ");
+        mMsg.append(ui->checkBox->text() + " | ");
     }
 
     if (ui->checkBox_2->isChecked()) {
-        mMsg.append(ui->checkBox_2->text() + " ");
+        mMsg.append(ui->checkBox_2->text() + " | ");
     }
 
     if (ui->checkBox_3->isChecked()) {
-        mMsg.append(ui->checkBox_3->text() + " ");
+        mMsg.append(ui->checkBox_3->text() + " | ");
     }
 
+    mMsg.append("Gender: " + ui->comboBox->currentText());
+    mMsg.append(".");
     ui->plainTextEdit->setPlainText(mMsg);
 }
