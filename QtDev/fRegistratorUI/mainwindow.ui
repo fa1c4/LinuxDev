@@ -171,7 +171,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>Save</string>
+     <string>Save CSV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>620</y>
+      <width>170</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save XML</string>
     </property>
    </widget>
   </widget>
