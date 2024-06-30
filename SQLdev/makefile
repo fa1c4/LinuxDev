@@ -8,10 +8,10 @@ SUFFIX_LFLAGS=-lmysqlcppconn
 all: TestConnSQL
 
 TestConnSQL: TestConnSQL.o
-	$(CC) $(LFLAGS) TestConnSQL.o -o TestConnSQL $(SUFFIX_LFLAGS)
+	$(CC) $(LFLAGS) TestConnSQL.o -o TestConnSQL.elf $(SUFFIX_LFLAGS)
 
 TestConnSQL.o: TestConnSQL.cpp
 	$(CC) $(CFLAGS) TestConnSQL.cpp -o TestConnSQL.o
 
 clean:
-	rm *.o TestConnSQL
+	rm *.o TestConnSQL.elf
