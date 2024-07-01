@@ -2,3 +2,6 @@ Build-*
 build-*
 *.o
 *.elf
+*.csv
+*.xml
+*.json

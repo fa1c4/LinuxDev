@@ -1,2 +1,11 @@
+command: 
+[1] systemctl start mysql.service
+[2] mysql -u fa1c4 -p
+...
+[n] systemctl stop mysql.service
+
+# after create a user, should grant privileges for it before usage.
+GRANT ALL PRIVILEGES ON *.* TO `fa1c4`@`localhost`;
+
 user: root; passwd: ' '
 user: fa1c4; passwd: ' '
