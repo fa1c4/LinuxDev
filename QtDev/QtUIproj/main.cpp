@@ -12,10 +12,10 @@ int main(int argc, char *argv[])
 //    w.show();
 //    QtExpl q;
 //    q.show();
-//    mListWidget mlistw;
-//    mlistw.show();
-    FileReader filerder;
-    filerder.show();
+    mListWidget mlistw;
+    mlistw.show();
+//    FileReader filerder;
+//    filerder.show();
 
     return a.exec();
 }
