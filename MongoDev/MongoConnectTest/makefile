@@ -1,7 +1,7 @@
 # Makefile lab for MongoConnectTest
 
 CC=g++
-CFLAGS=-c -Wall -Werror -g -I/usr/include/mongocxx -I/usr/include/bsoncxx
+CFLAGS=-c -Wall -Werror -g -I/usr/local/include/mongocxx -I/usr/local/include/bsoncxx
 LFLAGS=-lm -L/usr/lib/x86_64-linux-gnu -lmongocxx -lbsoncxx --std=c++17
 # LFLAGS needs to be put at the end of command
 
