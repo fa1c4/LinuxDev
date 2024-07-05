@@ -1,8 +1,12 @@
-environment: C++17, mongoxx-3.xx
+environment: Ubuntu20.04, gcc-9, C++17, mongocxx-3.10
+
+# install mongodb
+refer to official document
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
 
 # my lab installation
-> sudo apt-get install libmongoc-1.0-0
-> sudo apt-get install libbson-1.0
+# > sudo apt-get install libmongoc-1.0-0
+# > sudo apt-get install libbson-1.0
 # > sudo apt-get install libmongoc-dev
 curl -OL https://github.com/mongodb/mongo-cxx-driver/releases/download/r3.10.1/mongo-cxx-driver-r3.10.1.tar.gz
 tar -xzf mongo-cxx-driver-r3.10.1.tar.gz
@@ -20,7 +24,7 @@ sudo cmake --build . --target install
 # /usr/local/include/mongocxx
 
 # need to move the install path to /usr/local/include/xxx
-# for gcc include
+# for gcc include, just move subdirectory to /usr/local/include
 sudo mv /usr/local/include/bsoncxx/v_noabi/bsoncxx /usr/local/include/
 sudo mv /usr/local/include/mongocxx/v_noabi/mongocxx /usr/local/include/
 
@@ -29,13 +33,13 @@ sudo mv /usr/local/include/mongocxx/v_noabi/mongocxx /usr/local/include/
 # sudo ln -s /usr/local/lib/libbsoncxx.so._noabi /usr/lib/libbsoncxx.so._noabi
 # or add /usr/local/lib to share lib path
 export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-# you can add it to ~/.bashrc or ~/.zshrc
+# you can add it to ~/.bashrc or ~/.zshrc for permanent effect
 
 # uninstall
 # sudo cmake --build . --target uninstall
 
 PS:
-notice that 
+notice that:
 1.commands below will get errors
 sudo apt install libmongoc-1.0-0
 sudo apt install libbson-1.0
@@ -43,7 +47,7 @@ sudo apt install libbson-1.0
 cmake ..
 
 
---------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 # some other version installation way
 sudo apt-get install libmongoc-1.0-0
 sudo apt-get install libbson-1.0
