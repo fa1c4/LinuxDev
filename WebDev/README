@@ -1,0 +1,22 @@
+# install apache2
+sudo apt update
+sudo apt install apache2
+
+# show the status of apache2
+sudo systemctl status apache2
+
+# enable for cgi
+sudo a2enmod cgid
+
+# edit configure file for apache2
+sudo vim /etc/apache2/sites-available/000-default.conf
+
+# add the code below to <VirtualHost> block
+<Directory "/var/www/html/cgi-enabled">
+ Options +ExecCGI
+ AllowOverride None
+ Require all granted
+ AddHandler cgi-script .cgi .pl
+</Directory>
+
+sudo systemctl restart apache2
