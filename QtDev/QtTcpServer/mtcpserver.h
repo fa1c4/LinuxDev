@@ -1,20 +1,14 @@
-#include <QMainWindow>
+#ifndef MTCPSERVER_H
+#define MTCPSERVER_H
+
+#include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QThreadPool>
 #include <iostream>
-#include <QRunnable>
 
 
-class mConnectRun: public QRunnable {
-public:
-    mConnectRun();
-    qintptr = socketdescriptor;
-protected:
-    void run() override;
-};
-
-class mTcpSerer: public QTcpServer {
+class mTcpServer: public QTcpServer {
 public:
     explicit mTcpServer(QObject *parent = nullptr);
     void startServer();
@@ -26,3 +20,11 @@ protected:
 private:
     QThreadPool *pool;
 };
+
+//class mTcpServer
+//{
+//public:
+//    mTcpServer();
+//};
+
+#endif // MTCPSERVER_H

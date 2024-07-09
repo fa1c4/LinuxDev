@@ -1,25 +1,9 @@
-#include "mTcpServer.h"
+#include "mconnectrun.h"
 
 
-mTcpServer::mTcpServer(QObject *parent): QTcpServer(parent) {
-    pool = new QThreadPool(this);
-    pool->setMaxThreadCount(5);
-}
+mConnectRun::mConnectRun()
+{
 
-void mTcpServer::startServer() {
-    if (this->listen(QHostAddress::LocalHost, 1234)) {
-        qInfo("Server Start Successfully on localhost port 1234");
-    } else {
-        qInfo("Server Start Failed on localhost port 1234");
-    }
-}
-
-void mTcpServer::incomingConnection(qintptr handle) {
-    qInfo() << "Incoming Connection Received " << handle;
-    mConnectRun *task = new mConnectRun();
-    task->socketdescriptor = handle;
-    task->setAutoDelete(true);
-    pool->start(task);
 }
 
 void mConnectRun::run() {
@@ -37,7 +21,7 @@ void mConnectRun::run() {
             inBuffer = mSocket.readAll();
             qInfo() << socketdescriptor << ": " << inBuffer;
             // break loop when receive "quit"
-            if (!strcmp(inBuffer, "quit", 4)) {
+            if (!strncmp(inBuffer, "quit", 4)) {
                 break;
             }
             // print out message replied
