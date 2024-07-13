@@ -174,3 +174,58 @@ void mListWidget::on_pushButton_3_clicked()
 //        QMessageBox::warning(this, "WARNING", "File does not exist");
 //    }
 //}
+
+// parse json file
+void mListWidget::on_pushButton_4_clicked()
+{
+    ui->plainTextEdit->clear();
+    QString jsonStr;
+    QString fileName = ui->lineEdit->text();
+    QFile mFile(fileName);
+
+    if (mFile.exists()) {
+        if (mFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            jsonStr = mFile.readAll();
+            mFile.close();
+//            ui->plainTextEdit->appendPlainText(jsonStr);
+            ui->plainTextEdit->appendPlainText(jsonStr.toUtf8());
+            ui->plainTextEdit->appendPlainText("Parsed JSON file content:\n");
+//            QDebug(jsonStr.toUtf8());
+
+            QJsonDocument mDoc = QJsonDocument::fromJson(jsonStr.toUtf8());
+            QJsonObject mObj = mDoc.object();
+            // parse json object
+            if (mObj.isEmpty()) {
+                ui->plainTextEdit->appendPlainText("Object is Empty.");
+            } else {
+                ui->plainTextEdit->appendPlainText("mObj size: " + QString::number(mObj.size()));
+                for (auto it = mObj.begin(); it != mObj.end(); ++it) {
+                    QString mStr = "Key-> " + it.key().toUtf8() + " : Value-> ";
+
+                    // parse array structure data
+                    if (it->isArray()) {
+                        QJsonArray mArr = it->toArray();
+                        QString mStrArr = "[";
+                        for (auto ita = mArr.begin(); ita != mArr.end(); ita++) {
+                            // next iter is not the end, append with ", "
+                            if (++ita != mArr.end()) {
+                                --ita;
+                                mStrArr.append(ita->toString().toUtf8() + ", ");
+                            } else {
+                                --ita;
+                                mStrArr.append(ita->toString().toUtf8());
+                            }
+                        }
+                        mStrArr.append("]");
+                        mStr.append(mStrArr);
+                    }
+
+                    mStr.append(it.value().toString());
+                    ui->plainTextEdit->appendPlainText(mStr);
+                }
+            }
+        }
+    } else {
+        ui->plainTextEdit->appendPlainText("File does not exist.");
+    }
+}

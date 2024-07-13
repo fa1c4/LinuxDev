@@ -9,6 +9,10 @@
 #include <QMessageBox>
 #include <QFileInfo>
 #include <QXmlStreamReader>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDebug>
+#include <QJsonArray>
 
 // no need for QtXml/subincludes
 //#include <QtXml/QDomDocument>
@@ -46,6 +50,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::mListWidget *ui;
