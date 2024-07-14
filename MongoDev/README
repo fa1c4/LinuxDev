@@ -48,28 +48,20 @@ cmake ..
 
 
 -----------------------------------------------------------------------------------------------
-# some other version installation way
-sudo apt-get install libmongoc-1.0-0
-sudo apt-get install libbson-1.0
-sudo apt-get install cmake libssl-dev libsasl2-dev
+# usage of mongo
 
-wget https://github.com/mongodb/mongo-c-driver/releases/download/1.16.2/mongo-c-driver-1.16.2.tar.gz
-tar xzf mongo-c-driver-1.16.2.tar.gz
-cd mongo-c-driver-1.16.2
-mkdir cmake-build
-cd cmake-build
-cmake -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF ..
-sudo make install
+systemctl start mongod
+systemctl status mongod
 
-git clone https://github.com/mongodb/mongo-cxx-driver.git \
-    --branch releases/stable --depth 1
-cd mongo-cxx-driver/build
+# start mongo shell
+mongosh
+# show all databases
+show databases
+# switch to xxx database
+use xxxdatabase
+# show collections in database
+show collections
+# show tables
+# show contents in collections
+db.collection_name.find()
 
-sudo cmake ..                                \
-    -DCMAKE_BUILD_TYPE=Release          \
-    -DBSONCXX_POLY_USE_MNMLSTC=1                      \
-    -DCMAKE_INSTALL_PREFIX=/usr/local
-
-sudo make EP_mnmlstc_core
-sudo make
-sudo make install

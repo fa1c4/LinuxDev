@@ -5,3 +5,4 @@ build-*
 *.csv
 *.xml
 *.json
+BUG-*
