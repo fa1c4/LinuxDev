@@ -1,0 +1,24 @@
+# makefile for object library
+
+CC=g++
+CFLAGS=-c -Wall -I.
+LDFLAGS=-lm -L.
+
+OBJ_LIST=mObjTest.o mSquare.o mTriangle.o
+
+all: mObjTest
+
+mObjTest: $(OBJ_LIST)
+	$(CC) $(LDFLAGS) $(OBJ_LIST) -o mObjTest.elf
+
+mObjTest.o: mObjTest.cpp
+	$(CC) $(CFLAGS) mObjTest.cpp -o mObjTest.o
+
+mSquare.o: mSquare.cpp
+	$(CC) $(CFLAGS) mSquare.cpp -o mSquare.o
+
+mTriangle.o: mTriangle.cpp
+	$(CC) $(CFLAGS) mTriangle.cpp -o mTriangle.o
+
+clean:
+	rm *.o *.elf
