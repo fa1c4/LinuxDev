@@ -1,6 +1,7 @@
 Build-*
 build-*
 *.o
+*.so
 *.elf
 *.csv
 *.xml
