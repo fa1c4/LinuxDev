@@ -1,14 +1,28 @@
+# ignore for Qt
 Build-*
 build-*
+
+# ignore for Linux Dev
 *.o
 *.so
 *.elf
+
+# ignore for types of files
 *.csv
 *.xml
 *.json
+*.pdf
+*.csv
+
+# ignore for bug directory
 BUG-*
+
+# ignore for text but CMakeLists.txt
 *.txt
 !CMakeLists.txt
+
+# ignore for cmake temp and build files
 *.cmake
 CMakeFiles/
 build/
+
