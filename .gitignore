@@ -13,6 +13,7 @@ build-*
 *.json
 *.pdf
 *.csv
+*.gz
 
 # ignore for bug directory
 BUG-*
