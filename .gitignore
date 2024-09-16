@@ -27,3 +27,5 @@ BUG-*
 CMakeFiles/
 build/
 
+# ignore for java build files
+*.class
