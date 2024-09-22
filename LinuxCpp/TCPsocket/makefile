@@ -1,22 +1,22 @@
-# makefile for CPP TCP socket 
+# makefile for CPP TCP file socket 
 
 CC=g++
 CFLAGS=-c -Wall -g
 LDFLAGS=-lboost_regex -lboost_iostreams -lpthread -lboost_system
 
-all: iostream_server iostream_client
+all: rfc_server rfc_client
 
-iostream_server: iostream_server.o
-	$(CC) iostream_server.o -o iostream_server.elf $(LDFLAGS)
+rfc_server: rfc_server.o
+	$(CC) rfc_server.o -o rfc_server.elf $(LDFLAGS)
 
-iostream_server.o: iostream_server.cpp
-	$(CC) $(CFLAGS) iostream_server.cpp -o iostream_server.o
+rfc_server.o: rfc_server.cpp
+	$(CC) $(CFLAGS) rfc_server.cpp -o rfc_server.o
 
-iostream_client: iostream_client.o
-	$(CC) iostream_client.o -o iostream_client.elf $(LDFLAGS)
+rfc_client: rfc_client.o
+	$(CC) rfc_client.o -o rfc_client.elf $(LDFLAGS)
 
-iostream_client.o: iostream_client.cpp	
-	$(CC) $(CFLAGS) iostream_client.cpp -o iostream_client.o
+rfc_client.o: rfc_client.cpp	
+	$(CC) $(CFLAGS) rfc_client.cpp -o rfc_client.o
 
 clean:
 	rm *.o *.elf
