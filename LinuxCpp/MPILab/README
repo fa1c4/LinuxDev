@@ -1,0 +1,11 @@
+# Environment Dependencies
+
+Refer to https://www.open-mpi.org/software/ompi/v5.0/
+```shell
+tar -zxvf openmpi-5.0.0.tar.gz
+cd openmpi-5.0.0
+./configure
+make -j$(nproc)
+sudo make install
+sudo ldconfig
+```
