@@ -1,11 +1,12 @@
 # Environment Dependencies
 
-Refer to https://www.open-mpi.org/software/ompi/v5.0/
+Refer to https://www.open-mpi.org/software/ompi/v4.0/
 ```shell
-tar -zxvf openmpi-5.0.0.tar.gz
-cd openmpi-5.0.0
+tar -zxvf openmpi-4.0.7.tar.gz
+cd openmpi-4.0.7
 ./configure
 make -j$(nproc)
 sudo make install
 sudo ldconfig
 ```
+
