@@ -14,6 +14,7 @@ build-*
 *.pdf
 *.csv
 *.gz
+*.pem
 
 # ignore for bug directory
 BUG-*
