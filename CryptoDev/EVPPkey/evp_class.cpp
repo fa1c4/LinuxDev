@@ -156,6 +156,87 @@ void mEVP_Key::write_key(std::string key_file, bool is_private) {
     BIO_free(bio_out);
 }
 
+int mEVP_Key::pkey_encrypt(unsigned char* pInText, unsigned char* pOutBytes) {
+    int rc = 0;
+    size_t out_bytes_len = 0;
+    size_t in_text_len = (size_t)strlen((char*)pInText);
+
+    if (pkey == nullptr) {
+        std::cout << "pkey has not been generated or loaded" << std::endl;
+        return 0;
+    }
+
+    EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new(pkey, NULL);
+    if (ctx == nullptr) {
+        std::cout << "EVP_PKEY_CTX_new() Error" << std::endl;
+        rc = -1;
+        return rc;
+    }
+
+    rc = EVP_PKEY_encrypt_init(ctx);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_encrypt_init() Error" << std::endl;
+        return rc;
+    }
+
+    rc = EVP_PKEY_encrypt(ctx, NULL, &out_bytes_len, pInText, in_text_len);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_encrypt(NULL) Error" << std::endl;
+        return rc;
+    }
+
+    rc = EVP_PKEY_encrypt(ctx, pOutBytes, &out_bytes_len, pInText, in_text_len);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_encrypt() Error" << std::endl;
+        return rc;
+    }
+
+    EVP_PKEY_CTX_free(ctx);
+    rc = out_bytes_len;
+
+    return rc;
+}
+
+int mEVP_Key::pkey_decrypt(unsigned char* pOutText, unsigned char* pInBytes, size_t inBytes_len) {
+    size_t text_len;
+    int rc;
+
+    if (pkey == nullptr) {
+        std::cout << "pkey has not been initialized or loaded" << std::endl;
+        return 0;
+    }
+
+    EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new(pkey, NULL);
+    if (ctx == nullptr) {
+        std::cout << "EVP_PKEY_CTX_new() Error" << std::endl;
+        rc = -1;
+        return rc;
+    }
+
+    rc = EVP_PKEY_decrypt_init(ctx);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_decrypt_init() Error" << std::endl;
+        return rc;
+    }
+
+    rc = EVP_PKEY_decrypt(ctx, NULL, &text_len, pInBytes, inBytes_len);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_decrypt(NULL) Error" << std::endl;
+        return rc;
+    }
+
+    rc = EVP_PKEY_decrypt(ctx, pOutText, &text_len, pInBytes, inBytes_len);
+    if (rc <= 0) {
+        std::cout << "EVP_PKEY_decrypt() Error" << std::endl;
+        return rc;
+    }
+
+    EVP_PKEY_CTX_free(ctx);
+
+    rc = text_len;
+    return rc;
+}
+
 mEVP_Key::~mEVP_Key() {
     if (pkey != nullptr) 
         EVP_PKEY_free(pkey);

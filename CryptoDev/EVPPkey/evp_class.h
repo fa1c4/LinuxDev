@@ -50,6 +50,9 @@ namespace LibOpenSSL {
 
         void print_hash(unsigned char* value, size_t length);
 
+        int pkey_encrypt(unsigned char* pInText, unsigned char* pOutBytes);
+        int pkey_decrypt(unsigned char* pOutText, unsigned char* pInBytes, size_t inBytes_len);
+
         ~mEVP_Key();
     
     private:
