@@ -19,6 +19,15 @@
 #define MAX_BUFFER_SIZE 512
 
 namespace LibOpenSSL {
+    struct Message {
+        size_t msg_len;
+        unsigned char msg_body[MAX_BUFFER_SIZE];
+        Message() {
+            msg_len = 0;
+            memset(msg_body, 0, MAX_BUFFER_SIZE);
+        }
+    };
+
     class AES_CBC_256 {
     public:
         AES_CBC_256();

@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-c -Wall -g
-LDFLAGS=-lcrypto -lssl
+LDFLAGS=-lcrypto -lssl -lrt -lpthread -lboost_system
 
 all: evp_readkey_file evp_generate_rsakey pkey_sending pkey_recving
 

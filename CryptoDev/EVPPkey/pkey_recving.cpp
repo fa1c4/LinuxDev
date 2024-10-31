@@ -6,7 +6,7 @@
 using namespace boost::interprocess;
 
 
-int main() {
+int main(int argc, char* argv[]) {
     char opt[32];
     memset(opt, 0, sizeof(opt));
 
@@ -27,7 +27,7 @@ int main() {
     LibOpenSSL::mEVP_Key keyObj;
     EVP_PKEY* m_pkey = keyObj.load_key("private", argv[2]);
     if (m_pkey == nullptr) {
-        std::cout << "Load Key File Error" << std::endl;
+        std::cout << "Load Key File Error " << std::endl;
         exit(EXIT_FAILURE);
     }
 

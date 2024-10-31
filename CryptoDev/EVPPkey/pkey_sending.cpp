@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     LibOpenSSL::mEVP_Key keyObj;
     m_pkey = keyObj.load_key("public", argv[1]);
     if (m_pkey == nullptr) {
-        std::cout << "Load Key File Error" << std::endl;
+        std::cout << "Load Key File Error " << std::endl;
         exit(EXIT_FAILURE);
     }
 
