@@ -1,0 +1,20 @@
+```shell
+# setup
+sudo ./EchoGetPostWS.elf 2333 /temp
+
+# get
+tip=$(hostname -I)
+tip=$(echo "$tip" | tr -d ' ')
+./libcurl_httpget.elf http://$tip:2333/temp                        
+url: http://192.168.129.128:2333/temp
+# {
+#     'WS port': '2333',
+#     'WS path': '/temp',
+#     'http_request': 'GET',
+#   'Content-Length': '0',
+# '
+# }
+
+# post
+./libcurl_httppost.elf http://$tip:2333/temp "{Name: Baili, Gender: Male}"
+```
