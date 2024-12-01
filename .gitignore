@@ -30,6 +30,7 @@ BUG-*
 *.cmake
 CMakeFiles/
 build/
+.gdb_history
 
 # ignore for java build files
 *.class
