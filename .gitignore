@@ -16,6 +16,8 @@ build-*
 *.gz
 *.pem
 *.dat
+*.tar
+*.log
 
 # ignore for bug directory
 BUG-*
