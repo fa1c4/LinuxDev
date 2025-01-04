@@ -34,3 +34,6 @@ build/
 
 # ignore for java build files
 *.class
+
+# ignore for rust build files
+target/
